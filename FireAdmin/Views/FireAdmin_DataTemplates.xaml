@@ -1,0 +1,178 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/FireAdmin_Styles.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <DataTemplate x:Key="PopUp_Header">
+        <ContentControl>
+            <Border Height="25"
+                HorizontalAlignment="Left" VerticalAlignment="Center"
+                Width="300"
+                Background="#373E46"
+                BorderThickness="0,0,0,0" BorderBrush="#FFDD00" 
+                CornerRadius="0"
+                Margin="0,0,0,0">
+                <Grid>
+                    <TextBlock Text="C   o   n   s   o   l   e      O   p   e   r   a   t   i   o   n"
+                               FontFamily="{StaticResource FontFamily_03}"
+                               FontSize="12"
+                               HorizontalAlignment="Center" VerticalAlignment="Center"
+                               Foreground="#DCE0E4" 
+                               Margin="0,0,0,0"
+                               />
+                </Grid>
+            </Border>
+        </ContentControl>
+    </DataTemplate>
+
+    <DataTemplate x:Key="Pop_UIDs">
+        <ContentControl>
+            <Grid Height="150" Background="Transparent">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="0"/>
+                </Grid.RowDefinitions>
+
+
+                <!--This is background-->
+                <Border Grid.Row="0" Grid.Column="0" Grid.RowSpan="3"
+                        Background="#282D33"
+                        BorderBrush="#3A4149"
+                        BorderThickness="5"
+                        CornerRadius="8,8,8,8" 
+                        Height="150"
+                />
+
+                <!--This is header of form-->
+                <ContentControl Grid.Row="0"
+                        Content="{Binding}"
+                        Margin="0,0,0,0">
+                    <ContentControl.Style>
+                        <Style TargetType="ContentControl">
+                            <Setter Property="ContentTemplate"
+                            Value="{StaticResource PopUp_Header}" />
+                        </Style>
+                    </ContentControl.Style>
+                </ContentControl>
+
+                <!--This is carrier border-->
+                <Grid Grid.Row="1" Margin="0,0,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="15"/>
+                        <ColumnDefinition Width="270"/>
+                        <ColumnDefinition Width="15"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="1" Margin="0">
+                        <ComboBox x:Name="Combobox_UID" Style="{StaticResource ComboboxStyle}"
+                                  materialDesign:HintAssist.Hint="Select User UID"
+                                  ItemsSource="{Binding ListOfUserUIDs}"
+                                  SelectedItem="{Binding SelectedUserID}"
+                                  Margin="0,10,0,0"
+                                  Width="270">
+                        </ComboBox>
+                        <Button Command="{Binding ExecutePopUpEntryCommand}" 
+                                CommandParameter="{Binding ElementName=ConsoleWindow}"
+                                Style="{StaticResource OutlinedButtonStyle}" 
+                                Margin="0,15,0,0"
+                                Width="80">
+                            Action
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </ContentControl>
+    </DataTemplate>
+
+    <DataTemplate x:Key="Pop_Database">
+        <ContentControl>
+            <Grid Background="Transparent">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="0"/>
+                </Grid.RowDefinitions>
+
+                <!--This is background-->
+                <Border Grid.Row="0" Grid.Column="0" Grid.RowSpan="3"
+                        Background="#282D33"
+                        BorderBrush="#3A4149"
+                        BorderThickness="5"
+                        CornerRadius="8,8,8,8" 
+                        Height="{Binding Height_Pop_Database}"
+                />
+
+                <!--This is header of form-->
+                <ContentControl Grid.Row="0"
+                        Content="{Binding}"
+                        Margin="0,0,0,0">
+                    <ContentControl.Style>
+                        <Style TargetType="ContentControl">
+                            <Setter Property="ContentTemplate"
+                            Value="{StaticResource PopUp_Header}" />
+                        </Style>
+                    </ContentControl.Style>
+                </ContentControl>
+
+                <!--This is carrier border-->
+                <Grid Grid.Row="1" Margin="0,0,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="15"/>
+                        <ColumnDefinition Width="270"/>
+                        <ColumnDefinition Width="15"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="1" Margin="0">
+                        <TextBox Style="{StaticResource FloatingHintTextBox}" 
+                                 materialDesign:HintAssist.Hint="Enter root collection id"
+                                 Text="{Binding SelectedRootCollectionID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 Margin="0,10,0,0"/>
+                        <Grid Height="{Binding GridHeight_DocumentID}" Margin="0">
+                            <TextBox Style="{StaticResource FloatingHintTextBox}" 
+                                     materialDesign:HintAssist.Hint="Enter document id under root collection"
+                                     Text="{Binding SelectedDocumentID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                     Margin="0,10,0,0"/>
+                        </Grid>
+                        <Grid Height="{Binding GridHeight_FieldID}">
+                            <TextBox Style="{StaticResource FloatingHintTextBox}" 
+                                     materialDesign:HintAssist.Hint="Enter field id in document"
+                                     Text="{Binding SelectedFieldID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                     Margin="0,10,0,0"/>
+                        </Grid>
+                        <Grid Height="{Binding GridHeight_FieldValue}">
+                            <TextBox Style="{StaticResource FloatingHintTextBox}" 
+                                     materialDesign:HintAssist.Hint="Enter field value in document"
+                                     Text="{Binding SelectedFieldValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                     Margin="0,10,0,0"/>
+                        </Grid>
+                        <Button Command="{Binding ExecutePopUpEntryCommand}" 
+                                CommandParameter="{Binding ElementName=ConsoleWindow}"
+                                Style="{StaticResource OutlinedButtonStyle}" 
+                                Margin="0,15,0,0"
+                                Width="80">
+                            Action
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </ContentControl>
+    </DataTemplate>
+    
+</ResourceDictionary>
