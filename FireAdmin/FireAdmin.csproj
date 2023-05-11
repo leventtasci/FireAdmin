@@ -277,7 +277,6 @@
   <ItemGroup>
     <Resource Include="FireAdmin_Icon.ico" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Resource Include="Assets\FireAdmin_UI.png" />
   </ItemGroup>

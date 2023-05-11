@@ -22,14 +22,14 @@ Project aims to provide an easy-access for those who uses Firebase for authentic
 - Uses  https://github.com/BrunoVT1992/ConsoleTable/blob/4a86a2103c704fd09d35f48391d75433763698a3/ConsoleTable/Table.cs#L8 to create tables for Firebase Authentication, thanks BrunoVT1992 for this.
 - There are 15 tasks which FireAdmin can perform in Version 1.0 
 
-## About NuGet packckages
+## About NuGet packages
 
 - FireAdmin uses below NuGet packages:
 	* FirebaseAdmin
 	* FirebaseDatabase.net (why "N" is lowercase in .net is a mystery)
 	* Google.Cloud.Firestore
 
-## Imortant Notes
+## Important Notes
 
 - Please remamber that FirebaseAdmin bypasses all security rules in 
   Firestore Database, never share your Service Account json file with your clients.
